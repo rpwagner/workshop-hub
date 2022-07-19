@@ -1,0 +1,5 @@
+# copy file to  /etc/cron.d/jupyterhub-config-deploy
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+*/15 * * * * root /etc/jupyterhub/deploy-config.sh

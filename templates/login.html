@@ -1,0 +1,31 @@
+{% extends "templates/login.html" %}
+
+{% block main %}
+
+<div class="container">
+  {% block heading %}
+<div class="row text-center">
+  <h1>Welcome to {{workshopname}}</h1>
+
+  <p>
+  Students may request access by joining the <a target="_blank"
+  href="https://app.globus.org/groups/{{studentgroup}}/about">Cold
+  Spring Harbor Lab Single Cell Analysis Students</a> Globus
+  Group. Follow the link and click the "Join this Group"
+  button. That will send a request to the instructors.
+  </p>
+  
+  <p>
+  If you're new to Globus, check out the Globus <a target="_blank"
+  href="https://docs.globus.org/how-to/get-started/">getting started
+  How To</a>.
+  </p>
+</div>
+
+{% endblock %}
+
+</div>
+  
+{{ super() }}
+
+{% endblock %}
