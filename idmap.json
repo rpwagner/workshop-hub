@@ -1,0 +1,11 @@
+{
+  "DATA_TYPE": "expression_identity_mapping#1.0.0",
+  "mappings": [
+    {
+      "source": "{username}",
+      "match": "rpwagner@github\\.com",
+      "output": "ubuntu",
+      "ignore_case": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=JupyterHub
+After=syslog.target network.target
+
+[Service]
+User=root
+Restart=always
+WorkingDirectory=/etc/jupyterhub
+# Protect bits that are normally shared across the system
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+Environment=PATH=/usr/local/miniconda/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/etc/jupyterhub/jupyterhub.sh
+
+[Install]
+# Start service when system boots
+WantedBy=multi-user.target
