@@ -39,6 +39,26 @@ c.LocalGlobusOAuthenticator.enable_auth_state = True
 c.LocalGlobusOAuthenticator.identity_provider = 'github.com'
 c.LocalGlobusOAuthenticator.client_id = GLOBUS_OAUTH_CLIENT_ID
 c.LocalGlobusOAuthenticator.client_secret = GLOBUS_OAUTH_SECRET
-c.LocalGlobusOAuthenticator.create_system_users = True
+c.LocalGlobusOAuthenticator.create_system_users = False
 c.LocalGlobusOAuthenticator.revoke_tokens_on_logout = True
 c.LocalGlobusOAuthenticator.scope = ['openid', 'profile']
+
+
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+
+c.DockerSpawner.allowed_images = {'Base Single User Notebook': 'quay.io/jupyterhub/singleuser:5.4.2',
+    'SciPy Notebook': 'quay.io/jupyter/scipy-notebook:hub-5.4.2'}
+
+c.DockerSpawner.remove = True
+c.DockerSpawner.start_timeout = 180
+c.DockerSpawner.pull_policy = 'always'
+
+c.DockerSpawner.notebook_dir = '/home/jovyan/work'
+
+c.DockerSpawner.volumes = { '/data/hub/{username}': {"bind": '/home/jovyan/work', "mode": "rw"},
+                            '/data/hub/public-data': {"bind": '/home/jovyan/work/public-data', "mode": "ro"},
+                            '/data/hub/shared-data': {"bind": '/home/jovyan/work/shared-data', "mode": "rw"}
+                            }
+
+c.DockerSpawner.args = ['--FileCheckpoints.checkpoint_dir=/home/jovyan/work/.ipynb_checkpoints',]
+c.DockerSpawner.post_start_cmd = 'sh -c \'echo "cd ~/work" >> /home/jovyan/.bashrc\''
