@@ -19,8 +19,13 @@ Data-Enabled JupyterHub Example
 - Instance `i-0d1753bd8f74c566b`
 -  Elastic IP `44.224.205.200`
 - `172.31.22.24`
+- `subnet-c92e36b0` `172.31.16.0/20`
 - update, upgrade, reboot
 - [Quickstart Install](https://docs.globus.org/globus-connect-server/v5.4/quickstart/)
+
+```
+sudo apt-get install emacs-nox nfs-common
+```
 
 ```
 globus-connect-server endpoint setup "Rick JupyterHub GCS Server" \
@@ -88,6 +93,7 @@ globus-connect-server collection update 3eccaccf-e99d-41a4-b115-4082718bb8a8 --e
 - Instance `i-0d832880d09343e62`
 -  Elastic IP `100.23.0.121`
 - `172.31.21.55`
+- `subnet-c92e36b0` `172.31.16.0/20`
 - update, upgrade, reboot
 
 ### Route 53
@@ -104,6 +110,19 @@ Name:	jupyterhub.rickwagner.io
 Address: 100.23.0.121
 ```
 
+## Setup EFS
+
+- Name: JupyterHub
+- ID: `fs-0185371f70a8bd9ba`
+- DNS: `fs-0185371f70a8bd9ba.efs.us-west-2.amazonaws.com`
+- Security group: allow inbound NFS (`2049`) from GCS and JupyterHub security groups
+
+
+`sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0185371f70a8bd9ba.efs.us-west-2.amazonaws.com:/ /data`
+
+```
+fs-0185371f70a8bd9ba.efs.us-west-2.amazonaws.com:/ /data nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport
+```
 
 ## Needs
 

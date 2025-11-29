@@ -13,7 +13,7 @@ sudo timedatectl set-timezone America/Los_Angeles
 ```
 
 ```
-sudo apt-get install emacs-nox certbot apache2 python3-certbot-apache nodejs npm docker.io
+sudo apt-get install emacs-nox certbot apache2 python3-certbot-apache nodejs npm docker.io nfs-common
 ```
 
 ```
