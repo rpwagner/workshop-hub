@@ -8,10 +8,10 @@ Data-Enabled JupyterHub Example
 - Security Groups
   - GCS
     - Outbound anywhere
-    - Inbound: HTTPS, 50000 - 51000, SSH
+    - Inbound: HTTPS, 50000 - 51000, SSH from 140.221.0.0/16 and 130.202.0.0/16
   - JupyterHub
     - Outbound anywhere
-    - Inbound: HTTP, HTTPS, SSH
+    - Inbound: HTTP, HTTPS, SSH from 140.221.0.0/16 and 130.202.0.0/16
     
 ## Setup GCS
 
