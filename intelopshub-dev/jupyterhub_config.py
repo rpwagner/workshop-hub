@@ -91,8 +91,9 @@ c.Authenticator.post_auth_hook = user_setup
 
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
-c.DockerSpawner.allowed_images = {'Base Single User Notebook': 'quay.io/jupyterhub/singleuser:5.4.2',
-    'SciPy Notebook': 'quay.io/jupyter/scipy-notebook:hub-5.4.2'}
+c.DockerSpawner.allowed_images = {'IntelOps Basic Notebook':'ghcr.io/rpwagner/intelops-basic:latest',
+                                  'Base Single User Notebook': 'quay.io/jupyterhub/singleuser:5.4.2',
+                                  'SciPy Notebook': 'quay.io/jupyter/scipy-notebook:hub-5.4.2'}
 
 c.DockerSpawner.remove = True
 c.DockerSpawner.start_timeout = 180
