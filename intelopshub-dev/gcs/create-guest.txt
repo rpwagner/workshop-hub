@@ -1,0 +1,7 @@
+globus collection create guest \
+    --private \
+    --identity-id f82f9568-bc00-4dc4-bedb-55aef1a77516 \
+    --enable-https \
+    bbb8cf6a-4288-4a21-b75b-6739556cb8d7 \
+    '/hub/' \
+    "AmSC IntelOps Dev JupyterHub"

@@ -1,0 +1,5 @@
+globus-connect-server endpoint setup "AmSC IntelOps Dev" \
+    --private \
+    --organization "AmSC IntelOps" \
+    --owner rpwagner@anl.gov \
+    --contact-email rpwagner@anl.gov

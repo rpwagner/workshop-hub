@@ -1,0 +1,6 @@
+globus-connect-server collection create \
+    --enable-https --force-encryption \
+    --allow-guest-collections --private \
+    3c439dad-2c2a-4e36-9f1a-689db92a8db7 \
+    /data/ \
+    "AmSC Intel Ops"

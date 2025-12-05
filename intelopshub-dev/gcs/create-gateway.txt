@@ -1,0 +1,2 @@
+globus-connect-server storage-gateway create posix "POSIX Gateway" --domain 'anl.gov' --identity-mapping file:idmap.json 
+
