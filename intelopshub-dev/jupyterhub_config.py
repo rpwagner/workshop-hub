@@ -3,7 +3,7 @@ import jupyterhub
 from tornado.log import app_log
 from oauthenticator.globus import GlobusOAuthenticator
 
-GLOBUS_COLLECTION = '17c583ac-6033-446c-80df-8f44c006cd47'
+GLOBUS_COLLECTION = '87237be8-d9fb-4e3b-bcbb-c6cbb6acb66c'
 GLOBUS_OAUTH_CLIENT_ID = '32afb24a-ca13-491e-8b8c-063de6fdf57c'
 GLOBUS_OAUTH_SECRET = os.environ['GLOBUS_OAUTH_SECRET'].strip()
 
