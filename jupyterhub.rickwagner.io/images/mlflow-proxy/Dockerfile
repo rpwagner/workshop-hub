@@ -1,4 +1,4 @@
-FROM jupyterhub/singleuser:5.4.2
+FROM jupyterhub/singleuser:5.5.0
 
 USER root
 
