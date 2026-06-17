@@ -1,4 +1,4 @@
-FROM jupyterhub/singleuser:5.5.0
+FROM quay.io/jupyter/base-notebook:hub-5.5.0
 
 USER root
 
