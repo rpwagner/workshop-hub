@@ -3,7 +3,6 @@ FROM quay.io/jupyter/base-notebook:hub-5.5.0
 USER root
 
 ENV DEBIAN_FRONTEND=noninteractive
-# ENV HERMES_HOME=/home/jovyan/work/.hermes
 ENV PLAYWRIGHT_BROWSERS_PATH=/opt/playwright
 ENV AGENT_BROWSER_ARGS=--no-sandbox,--disable-dev-shm-usage
 
