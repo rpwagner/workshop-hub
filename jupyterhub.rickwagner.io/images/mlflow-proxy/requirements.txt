@@ -1,3 +1,4 @@
 globus_sdk
 globus-cli
-jupyter-server-proxy==4.5.0
+jupyter-server-proxy[standalone]==4.5.0
+hermes-agent
