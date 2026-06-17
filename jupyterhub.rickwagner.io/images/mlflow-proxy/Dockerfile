@@ -34,10 +34,7 @@ RUN mkdir -p /usr/local/bin/start-notebook.d \
 #!/usr/bin/env bash
 set -euo pipefail
 
-: "${HERMES_HOME:=/home/jovyan/work/.hermes}"
-
-mkdir -p "$HERMES_HOME"
-chmod 700 "$HERMES_HOME"
+HERMES_HOME=/home/jovyan/work/.hermes
 
 if [ ! -e /home/jovyan/.hermes ]; then
     ln -s "$HERMES_HOME" /home/jovyan/.hermes
