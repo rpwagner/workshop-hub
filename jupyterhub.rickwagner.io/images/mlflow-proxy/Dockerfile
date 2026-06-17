@@ -27,18 +27,5 @@ RUN npm install -g agent-browser playwright \
     && npx playwright install --with-deps chromium --only-shell \
     && npm cache clean --force \
     && chmod -R a+rX /opt/playwright
-
-RUN mkdir -p /usr/local/bin/start-notebook.d \
- && cat > /usr/local/bin/start-notebook.d/20-setup-hermes-home.sh <<'EOF' \
- && chmod +x /usr/local/bin/start-notebook.d/20-setup-hermes-home.sh
-#!/usr/bin/env bash
-set -euo pipefail
-
-HERMES_HOME=/home/jovyan/work/.hermes
-
-if [ ! -e /home/jovyan/.hermes ]; then
-    ln -s "$HERMES_HOME" /home/jovyan/.hermes
-fi
-EOF
     
 USER $NB_UID
