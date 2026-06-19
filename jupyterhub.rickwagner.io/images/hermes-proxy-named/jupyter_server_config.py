@@ -2,7 +2,7 @@ lines = open('/home/jovyan/work/.hermes/.env').readlines()
 conf = {}
 for l in lines:
     key, val = l.split('=')
-    conf[key] = val
+    conf[key] = val.strip()
 
 c = get_config()
 
