@@ -58,28 +58,12 @@ def user_setup(authenticator, handler, authentication):
 
 c.Application.log_level = 'DEBUG'
 
-#########################################
-## Ex 4.2: Update jupyterhub_config.py ##
-#########################################
 c.JupyterHub.bind_url = 'http://127.0.0.1:8000/jhub/'
 c.JupyterHub.hub_ip = '172.31.21.55'
 c.JupyterHub.pid_file = '/var/run/jupyterhub.pid'
 
-# ####################################################
-# Ex 6.2: Update jupyterhub_config.py with Alt Names #
-# ####################################################
-# c.JupyterHub.trusted_alt_names = ['DNS:trainXX.jupyter-security.info', 'DNS:trainXX']
-# c.JupyterHub.internal_certs_location = '/etc/jupyterhub/internal-ssl'
-# c.JupyterHub.internal_ssl = True
-
-#################################################################
-# Ex 8.3: Update jupyterhub_config.py with IPC Kernel Transport #
-#################################################################
-# c.Spawner.args = ['--transport="ipc"']
-
-##########################################################
-# Ex 10.2: Update jupyterhub_config.py for Globus Auth   #
-##########################################################
+c.JupyterHub.allow_named_servers = True
+c.JupyterHub.named_server_limit_per_user = 2
 
 c.JupyterHub.authenticator_class = GlobusOAuthenticator
 c.GlobusOAuthenticator.oauth_callback_url = \
@@ -101,9 +85,13 @@ c.Spawner.environment = {'GLOBUS_COLLECTION': GLOBUS_COLLECTION}
 
 c.Authenticator.post_auth_hook = user_setup
 
+c.JupyterHub.allow_named_servers = True
+c.JupyterHub.named_server_limit_per_user = 2
+
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
 c.DockerSpawner.allowed_images = {'MLFlow Proxy':'ghcr.io/rpwagner/mlflow-proxy:latest',
+    'Hermes Proxy Named':'ghcr.io/rpwagner/hermes-proxy-named:latest',
     'Base Single User Notebook': 'quay.io/jupyter/base-notebook:hub-5.5.0',
     'SciPy Notebook': 'quay.io/jupyter/scipy-notebook:hub-5.5.0'}
 
@@ -119,4 +107,3 @@ c.DockerSpawner.volumes = { '/data/hub/{username}': {"bind": '/home/jovyan/work'
                             }
 
 c.DockerSpawner.args = ['--FileCheckpoints.checkpoint_dir=/home/jovyan/work/.ipynb_checkpoints',]
-c.DockerSpawner.post_start_cmd = 'sh -c \'echo "cd ~/work" >> /home/jovyan/.bashrc\''

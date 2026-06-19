@@ -27,5 +27,7 @@ RUN npm install -g agent-browser playwright \
     && npx playwright install --with-deps chromium --only-shell \
     && npm cache clean --force \
     && chmod -R a+rX /opt/playwright
-    
+
+RUN echo "cd ~/work" >> /home/jovyan/.bashrc
+
 USER $NB_UID
