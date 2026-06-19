@@ -15,10 +15,12 @@ c.ServerProxy.servers = {
             "Authorization": f"Bearer {hermes_key}",
         },
         "launcher_entry": {
+            "enabled": True,
             "title": "Hermes API",
-            "path_info": "hermes/health",
+            "path_info": "health",
             "category": "Other",
+            "new_browser_tab": True
         },
-        "new_browser_tab": True,
+        "new_browser_tab": True
     }
 }
