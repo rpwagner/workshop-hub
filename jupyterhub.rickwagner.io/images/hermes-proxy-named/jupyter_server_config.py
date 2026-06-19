@@ -1,7 +1,8 @@
-import os
-
-hermes_port = int(os.environ.get("API_SERVER_PORT", "8642"))
-hermes_key = os.environ['HERMES_API_KEY'].strip()
+lines = open('/home/jovyan/work/.hermes/.env').readlines()
+conf = {}
+for l in lines:
+    key, val = l.split('=')
+    conf[key] = val
 
 c = get_config()
 
@@ -10,11 +11,11 @@ c.ServerProxy.servers = {
         # Hermes is started by scripts/20-start-hermes-gateway.sh.
         # An empty command tells jupyter-server-proxy to proxy an already-running service.
         "command": [],
-        "port": hermes_port,
+        "port": int(conf[API_SERVER_PORT]),
         "absolute_url": False,
         "timeout": 30,
         "request_headers_override": {
-            "Authorization": f"Bearer {hermes_key}",
+            "Authorization": f"Bearer {conf[API_SERVER_KEY]}",
         },
         "launcher_entry": {
             "enabled": True,
