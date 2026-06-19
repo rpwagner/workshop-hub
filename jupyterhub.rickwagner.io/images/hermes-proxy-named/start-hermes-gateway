@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-export HERMES_API_KEY=$(grep API_SERVER_KEY /home/jovyan/work/.hermes/.env | sed 's/API_SERVER_KEY=//')
-export API_SERVER_PORT="${1:-8642}"
-
-exec hermes gateway

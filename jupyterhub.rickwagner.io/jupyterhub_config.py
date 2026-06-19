@@ -62,9 +62,6 @@ c.JupyterHub.bind_url = 'http://127.0.0.1:8000/jhub/'
 c.JupyterHub.hub_ip = '172.31.21.55'
 c.JupyterHub.pid_file = '/var/run/jupyterhub.pid'
 
-c.JupyterHub.allow_named_servers = True
-c.JupyterHub.named_server_limit_per_user = 2
-
 c.JupyterHub.authenticator_class = GlobusOAuthenticator
 c.GlobusOAuthenticator.oauth_callback_url = \
     'https://jupyterhub.rickwagner.io/jhub/hub/oauth_callback'
@@ -85,8 +82,8 @@ c.Spawner.environment = {'GLOBUS_COLLECTION': GLOBUS_COLLECTION}
 
 c.Authenticator.post_auth_hook = user_setup
 
-c.JupyterHub.allow_named_servers = True
-c.JupyterHub.named_server_limit_per_user = 2
+# c.JupyterHub.allow_named_servers = True
+# c.JupyterHub.named_server_limit_per_user = 2
 
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
