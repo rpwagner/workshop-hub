@@ -10,7 +10,7 @@ c.ServerProxy.servers = {
     "hermes": {
         # Hermes is started by scripts/20-start-hermes-gateway.sh.
         # An empty command tells jupyter-server-proxy to proxy an already-running service.
-        "command": ['hermes gateway'],
+        "command": ["hermes", "gateway"],
         "port": int(conf['API_SERVER_PORT']),
         "absolute_url": False,
         "timeout": 30,
@@ -20,8 +20,8 @@ c.ServerProxy.servers = {
         "launcher_entry": {
             "enabled": True,
             "title": "Hermes API",
-            "path_info": "health",
-            "category": "Other",
+#            "path_info": "hermes/health",
+#            "category": "Other",
             "new_browser_tab": True
         },
         "new_browser_tab": True
