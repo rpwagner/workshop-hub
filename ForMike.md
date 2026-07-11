@@ -9,6 +9,10 @@ For classes and workshops I build JupyterHub servers using:
 - DockerSpawner to run the user notebook environments
   - This avoids needing to create POSIX accounts for every user on the servers
   - Custom images can be built on top of container images maintained by Jupyter
+  - The images are hosted on GitHub and private
+    - Dockerfiles are in this repo (e.g., [`intelopshub-dev/images/basic/Dockerfile`](intelopshub-dev/images/basic/Dockerfile))
+    - Build process examples are in [`.github/workflows`](.github/workflows)
+    - A GitHub personal access token can be used on the JupyterHub server to pull the images
   - Directories can be mounted read-write or read-only into a pod using bind mounts defined in the DockerSpawner configuration
 - NFS export to hold home directories, reference data, and workspaces
 - Globus Guest Collection
