@@ -10,9 +10,33 @@ You might be able to get by with [The Littlest JupyterHub](https://tljh.jupyter.
 - [Globus OAuthenticator](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html)
   - [User Identity](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#user-identity) has details on getting the right username based on a single IdP
   - [Group Management](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#group-management) describes how to use Globus Groups to define users and admins
+  - [Globus Token scopes](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#globus-scopes-and-transfer) you can set the scopes of the tokens retrieved when a user logs in using Globus. These tokens are injected as an environment variable in the user’s notebook session for use to access Globus APIs and resources. Think of the AI Inference service, Globus Compute, and the IRI Facility API.
 - [DockerSpawner](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/index.html)
   - [Data and mounts](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/data-persistence.html)
   - [Container images](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/docker-image.html)
+  - N.B. No idea how much effort using containers on DGX would be.
+- [JupyterHub REST API](https://jupyterhub.readthedocs.io/en/stable/howto/rest.html)
+  - [OpenAPI Spec](https://jupyterhub.readthedocs.io/en/stable/reference/rest-api.html)
+
+## Concepts
+
+### Single-User Server
+
+The [single-user server](https://jupyterhub.readthedocs.io/en/stable/explanation/singleuser.html) is the HTTP server that gets launched (spawned) by JupyterHub. The most common server in use right now is JupyterLab, but it can be pretty much anything that talks HTTP. Access to the single-user server is handled by the JupyterHub HTTP proxy and auth layers.
+
+This is where to think about the user environment. The spawning process can be configured easily to allow users to select different environments, or to map certain environments to a group of users. Like giving some students more or less GPU resources, or particular versions of code. Look at the spawner options for this.
+
+This is why I use DockerSpawner and container images in my builds. I start with a base image and customize it for various use cases to avoid Python dependency Hell as much as possible.
+
+### JupyterHub REST API
+
+[JupyterHub has its own REST API](https://jupyterhub.readthedocs.io/en/stable/howto/rest.html) that can be used to manage processes like launching a notebook server. It also handling the HTTP proxy and auth for interacting with a notebook server. Like interacting with a notebook to edit cells, or sending commands to a terminal.
+
+In my exploration with MLFlow and Hermes AI, those are behind the API, so it handles the HTTP proxy, TLS, and authentication layers. That provides a single consistent layer at the external boundary, and then things like the application stack logging can be configured in a similar manner.
+
+### Services
+
+JupyterHub can either manage (start, stop, etc.) or proxy [services](https://jupyterhub.readthedocs.io/en/stable/reference/services.html). Putting this here more to share the idea that some web pages or APIs could be put behind JupyterHub
 
 ## My Approach
 
