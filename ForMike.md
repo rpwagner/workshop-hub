@@ -1,5 +1,21 @@
 # For Mike
 
+You might be able to get by with [The Littlest JupyterHub](https://tljh.jupyter.org/en/latest/) (TLJH) and setting the Globus OAuthenticator with group management. I’m not familiar with TLJH and since I’m usually trying to do something new, I start from scratch.
+
+## References
+
+- [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/)
+- [The Littlest JupyterHub](https://tljh.jupyter.org/en/latest/)
+  - [How to Guides](https://tljh.jupyter.org/en/latest/howto/index.html), these are useful on many JupyterHub deployments
+- [Globus OAuthenticator](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html)
+  - [User Identity](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#user-identity) has details on getting the right username based on a single IdP
+  - [Group Management](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#group-management) describes how to use Globus Groups to define users and admins
+- [DockerSpawner](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/index.html)
+  - [Data and mounts](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/data-persistence.html)
+  - [Container images](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/docker-image.html)
+
+## My Approach
+
 For classes and workshops I build JupyterHub servers using:
 - Miniconda Python distribution for the base JupyterHub service
 - Stable DNS entry for the server
@@ -20,8 +36,6 @@ For classes and workshops I build JupyterHub servers using:
   - Provides Globus & HTTPS access to the directories described above
   - Data access rules following the same policies as what users and see and do when logged into JupyterHub
   - Per-user directories are created when a user first logs into JupyterHub
-
-See [References](#references) below for links to the documentation for these.
 
 ## Setup
 
@@ -65,14 +79,3 @@ c.GlobusOAuthenticator.allowed_globus_groups = {'<your-user-group-uuid>'}
 c.GlobusOAuthenticator.admin_globus_groups = {'<your-admin-group-uuid>'}
 ```
 
-## References
-
-- [JupyterHub](https://jupyterhub.readthedocs.io/en/stable/)
-- [The Littlest JupyterHub](https://tljh.jupyter.org/en/latest/) (TLJH)
-  - [How to Guides](https://tljh.jupyter.org/en/latest/howto/index.html), these are useful on many JupyterHub deployments
-- [Globus OAuthenticator](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html)
-  - [User Identity](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#user-identity) has details on getting the right username based on a single IdP
-  - [Group Management](https://oauthenticator.readthedocs.io/en/latest/tutorials/provider-specific-setup/providers/globus.html#group-management) describes how to use Globus Groups to define users and admins
-- [DockerSpawner](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/index.html)
-  - [Data and mounts](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/data-persistence.html)
-  - [Container images](https://jupyterhub-dockerspawner.readthedocs.io/en/latest/docker-image.html)
