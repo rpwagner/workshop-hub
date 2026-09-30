@@ -2,6 +2,9 @@
 
 Data-Enabled JupyterHub Example
 
+The independently installable [IRI BatchSpawner prototype](examples/iri_batchspawner/)
+demonstrates an IRI scheduler backend for a separate Globus-authenticated Hub.
+
 ## EC2
 
 - Get PEM file

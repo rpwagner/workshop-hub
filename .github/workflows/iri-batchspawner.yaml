@@ -1,0 +1,32 @@
+name: IRI BatchSpawner prototype
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'examples/iri_batchspawner/**'
+      - '.github/workflows/iri-batchspawner.yaml'
+  pull_request:
+    paths:
+      - 'examples/iri_batchspawner/**'
+      - '.github/workflows/iri-batchspawner.yaml'
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install './examples/iri_batchspawner[test]'
+      - run: python -m pytest examples/iri_batchspawner/tests
+      - run: python -m ruff check examples/iri_batchspawner
+      - run: python -m ruff format --check examples/iri_batchspawner
+      - run: git diff --check
